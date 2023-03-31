@@ -1,0 +1,63 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  font-family: "Noto Sans TC", sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.scoreBar {
+  margin: 20px;
+}
+
+.top-score {
+  width: 90vw;
+  height: 20px;
+  border: 2px solid black;
+}
+
+.score {
+  display: flex;
+  justify-content: space-around;
+}
+
+.current-score {
+  background: red;
+  height: 100%;
+  width: 90%;
+}
+
+section.board {
+  display: grid;
+  width: 61.5vh;
+  grid-template-rows: repeat(4, 15vh);
+  grid-template-columns: repeat(4, 15vh);
+  grid-gap: 0vmin;
+  margin: 0.5rem;
+  border: 5px solid rgb(14, 96, 121);
+  border-radius: 10px;
+}
+
+.sqr {
+  border: 2px solid black;
+  font-size: 8vmin;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}/*# sourceMappingURL=style.css.map */
