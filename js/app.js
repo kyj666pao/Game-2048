@@ -11,6 +11,26 @@ let board, win, failed;
 body.addEventListener("keydown", handleKeyDown);
 
 /*-------------------------------- Functions --------------------------------*/
+init();
+
+function init() {
+  let allSqr = document.querySelectorAll(".sqr p");
+  allSqr.forEach((e) => e.remove());
+  board = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  win = false;
+  failed = false;
+  updateBoard();
+}
+
+function updateBoard() {
+  sqrEls.forEach((e, idx) => {
+    let sqr = document.createElement("p");
+    board[idx] == 0
+      ? ((sqr.innerHTML = " "), e.append(sqr))
+      : ((sqr.innerHTML = board[idx]), e.append(sqr));
+  });
+}
+
 function handleKeyDown(e) {
   //   if (e.key === "ArrowUp") {
   //     console.log("Up Key pressed!");
@@ -40,3 +60,5 @@ function handleKeyDown(e) {
       break;
   }
 }
+// credit: detecting-the-pressed-arrow-key
+// https://www.geeksforgeeks.org/javascript-detecting-the-pressed-arrow-key/
