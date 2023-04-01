@@ -16,11 +16,11 @@ init();
 function init() {
   let allSqr = document.querySelectorAll(".sqr p");
   allSqr.forEach((e) => e.remove());
-  board = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  board = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
   win = false;
   failed = false;
-  randomGenerate();
-  randomGenerate();
+  //   randomGenerate();
+  //   randomGenerate();
   updateBoard();
 }
 
@@ -90,3 +90,84 @@ function handleKeyDown(e) {
 }
 // credit: detecting-the-pressed-arrow-key
 // https://www.geeksforgeeks.org/javascript-detecting-the-pressed-arrow-key/
+
+// direction of board array
+// https://code.likeagirl.io/create-an-array-of-empty-arrays-7ec77edea546
+
+//-------------------------------------------------------
+// let dirOfBoard = Array.from(Array(4), () => []);
+// while (board.length) dirOfBoard.push(board.splice(0, 4));
+// console.log(dirOfBoard);
+
+//--------------------------left key-----------------------------
+function moveLeft() {
+  console.log(0 / 4);
+  // let dirOfBoard = Array.from(Array(4), () => []);
+  let arr1 = [];
+  let arr2 = [];
+  for (let i = 0; i < 16; i += 4) {
+    for (let j = 0; j < 4; j++) {
+      arr2[j] = board[i + j];
+    }
+    console.log(i / 4, arr2);
+    arr1.push(arr2.map((e) => e));
+  }
+  console.log(arr1);
+}
+// moveLeft();
+
+//--------------------------right key-----------------------------
+function moveRight() {
+  console.log(0 / 4);
+  let reverseBoard = board.map((e) => e).reverse();
+  console.log(reverseBoard);
+  let arr1 = [];
+  let arr2 = [];
+  for (let i = 0; i < 16; i += 4) {
+    for (let j = 0; j < 4; j++) {
+      arr2[j] = reverseBoard[i + j];
+    }
+    console.log(i / 4, arr2);
+    arr1.push(arr2.map((e) => e));
+  }
+  console.log(arr1);
+}
+// moveRight();
+
+//-----------------------------up key--------------------------------
+function moveUp() {
+  // let dirOfBoard = Array.from(Array(4), () => []);
+  let arr1 = [];
+  let arr2 = [];
+  for (let i = 0; i < 4; i++) {
+    for (let j = 0; j < 16; j += 4) {
+      arr2[j / 4] = board[i + j];
+    }
+    console.log(i, arr2);
+    arr1.push(arr2.map((e) => e));
+  }
+  console.log(arr1);
+}
+// moveUp();
+
+//-----------------------------up key--------------------------------
+function moveDown() {
+  let reverseBoard = board.map((e) => e).reverse();
+  let arr1 = [];
+  let arr2 = [];
+  for (let i = 0; i < 4; i++) {
+    for (let j = 0; j < 16; j += 4) {
+      arr2[j / 4] = reverseBoard[i + j];
+    }
+    console.log(i, arr2);
+    arr1.push(arr2.map((e) => e));
+  }
+  console.log(arr1);
+}
+moveDown();
+
+console.log(board);
+
+//---------------------npm math.js------------------
+// let dirOfBoard = Math.reshape(board, [4, 4]);
+// console.log(dirOfBoard);
