@@ -16,10 +16,11 @@ init();
 function init() {
   let allSqr = document.querySelectorAll(".sqr p");
   allSqr.forEach((e) => e.remove());
-  board = [0, 0, 0, 2, 2, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0];
+  board = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
   win = false;
   failed = false;
-
+  randomGenerate();
+  randomGenerate();
   updateBoard();
 }
 
@@ -32,7 +33,6 @@ function updateBoard() {
   });
 }
 
-randomGenerate()
 function randomGenerate() {
   //   console.log(board);
   //  create a list for index of square of blank
@@ -49,14 +49,14 @@ function randomGenerate() {
   //   console.log(`probability: ${probability}`);
 
   board[whereGenerate] = probability < 9 ? 2 : 4;
-  
-  let sqrContent = document.createElement("p");
-  Num = probability < 9 ? 2 : 4;
-  console.log(Num);
-  sqrContent.innerHTML = Num;
-  let sqr = document.querySelector(`#sq${whereGenerate}`);
-  sqr.append(sqrContent);
-  console.log(board);
+
+  //   let sqrContent = document.createElement("p");
+  //   Num = probability < 9 ? 2 : 4;
+  //   console.log(Num);
+  //   sqrContent.innerHTML = Num;
+  //   let sqr = document.querySelector(`#sq${whereGenerate}`);
+  //   sqr.append(sqrContent);
+  //   console.log(board);
 }
 
 function handleKeyDown(e) {
