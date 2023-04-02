@@ -111,6 +111,7 @@ function handleKeyDown(e) {
   //       row[idx] == 0 ? (row.splice(idx, 1), row.push(0)) : "";
   //     }
   //   });
+  randomGenerate();
   updateBoard();
 }
 
@@ -143,6 +144,11 @@ function moveLeft() {
 
   moveSqr(arr1);
   console.log(arr1);
+  mergeSqr(arr1);
+  console.log(arr1);
+  moveSqr(arr1);
+  console.log(arr1);
+
   board = arr1.flatMap((e) => e);
   console.log(board);
 }
@@ -165,6 +171,11 @@ function moveRight() {
 
   moveSqr(arr1);
   console.log(arr1);
+  mergeSqr(arr1);
+  console.log(arr1);
+  moveSqr(arr1);
+  console.log(arr1);
+
   reverseBoard = arr1.flatMap((e) => e);
   board = reverseBoard.reverse();
   console.log(board);
@@ -185,6 +196,10 @@ function moveUp() {
   console.log(arr1);
   //   return arr1;
 
+  moveSqr(arr1);
+  console.log(arr1);
+  mergeSqr(arr1);
+  console.log(arr1);
   moveSqr(arr1);
   console.log(arr1);
 
@@ -214,6 +229,10 @@ function moveDown() {
 
   moveSqr(arr1);
   console.log(arr1);
+  mergeSqr(arr1);
+  console.log(arr1);
+  moveSqr(arr1);
+  console.log(arr1);
 
   board = [];
   for (let i = 4 - 1; i >= 0; i--) {
@@ -235,6 +254,25 @@ function moveSqr(arr1) {
   arr1.forEach((row) => {
     for (let idx = row.length; idx >= 0; idx--) {
       row[idx] == 0 ? (row.splice(idx, 1), row.push(0)) : "";
+    }
+  });
+}
+
+function mergeSqr(arr1) {
+  arr1.forEach((row) => {
+    if (row[0] == row[1] && row[0] > 0) {
+      row[0] += row[1];
+      row[1] = 0;
+      if (row[2] == row[3] && row[2] > 0) {
+        row[2] += row[3];
+        row[3] = 0;
+      }
+    } else if (row[0] != row[1] && row[1] == row[2] && row[1] > 0) {
+      row[1] += row[2];
+      row[2] = 0;
+    } else if ((row[0] != row[1]) & (row[2] == row[3])) {
+      row[2] += row[3];
+      row[3] = 0;
     }
   });
 }
