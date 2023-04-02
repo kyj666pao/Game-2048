@@ -5,7 +5,7 @@ const sqrEls = document.querySelectorAll(".sqr");
 const currentScore = document.querySelector(".current-score");
 const body = document.querySelector("body");
 /*---------------------------- Variables (state) ----------------------------*/
-let board, win, failed;
+let board, win, failed, sizeN;
 
 /*----------------------------- Event Listeners -----------------------------*/
 body.addEventListener("keydown", handleKeyDown);
@@ -14,17 +14,31 @@ body.addEventListener("keydown", handleKeyDown);
 init();
 
 function init() {
-  let allSqr = document.querySelectorAll(".sqr p");
-  allSqr.forEach((e) => e.remove());
-  board = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+  //   let allSqr = document.querySelectorAll(".sqr p");
+  //   allSqr.forEach((e) => e.remove());
+  sizeN = 4;
+  board = [];
+  //   board = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+  //   board = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  for (let i = 0; i < sizeN * sizeN; i++) {
+    board[i] = 0;
+  }
+  //   console.log(board);
   win = false;
   failed = false;
-  //   randomGenerate();
-  //   randomGenerate();
+  randomGenerate();
+  randomGenerate();
+  randomGenerate();
+  randomGenerate();
+  randomGenerate();
+  randomGenerate();
+
   updateBoard();
 }
 
 function updateBoard() {
+  let allSqr = document.querySelectorAll(".sqr p");
+  allSqr.forEach((e) => e.remove());
   sqrEls.forEach((e, idx) => {
     let sqrContent = document.createElement("p");
     board[idx] == 0
@@ -58,7 +72,7 @@ function randomGenerate() {
   //   sqr.append(sqrContent);
   //   console.log(board);
 }
-
+let dirOfBoard;
 function handleKeyDown(e) {
   //   if (e.key === "ArrowUp") {
   //     console.log("Up Key pressed!");
@@ -76,18 +90,30 @@ function handleKeyDown(e) {
   switch (e.key) {
     case "ArrowLeft":
       console.log("Left Key pressed!");
+      dirOfBoard = moveLeft();
       break;
     case "ArrowRight":
       console.log("Right Key pressed!");
+      dirOfBoard = moveRight();
       break;
     case "ArrowUp":
       console.log("Up Key pressed!");
+      dirOfBoard = moveUp();
       break;
     case "ArrowDown":
       console.log("Down Key pressed!");
+      dirOfBoard = moveDown();
       break;
   }
+  //   console.log(dirOfBoard);
+  //   dirOfBoard.forEach((row) => {
+  //     for (let idx = row.length; idx >= 0; idx--) {
+  //       row[idx] == 0 ? (row.splice(idx, 1), row.push(0)) : "";
+  //     }
+  //   });
+  updateBoard();
 }
+
 // credit: detecting-the-pressed-arrow-key
 // https://www.geeksforgeeks.org/javascript-detecting-the-pressed-arrow-key/
 
@@ -99,9 +125,9 @@ function handleKeyDown(e) {
 // while (board.length) dirOfBoard.push(board.splice(0, 4));
 // console.log(dirOfBoard);
 
+// --------reshape the board array to 2D array of key pressed direction---------
 //--------------------------left key-----------------------------
 function moveLeft() {
-  console.log(0 / 4);
   // let dirOfBoard = Array.from(Array(4), () => []);
   let arr1 = [];
   let arr2 = [];
@@ -109,16 +135,20 @@ function moveLeft() {
     for (let j = 0; j < 4; j++) {
       arr2[j] = board[i + j];
     }
-    console.log(i / 4, arr2);
+    // console.log(i / 4, arr2);
     arr1.push(arr2.map((e) => e));
   }
   console.log(arr1);
+  //   return arr1;
+
+  moveSqr(arr1);
+  console.log(arr1);
+  board = arr1.flatMap((e) => e);
+  console.log(board);
 }
 // moveLeft();
-
 //--------------------------right key-----------------------------
 function moveRight() {
-  console.log(0 / 4);
   let reverseBoard = board.map((e) => e).reverse();
   console.log(reverseBoard);
   let arr1 = [];
@@ -127,13 +157,19 @@ function moveRight() {
     for (let j = 0; j < 4; j++) {
       arr2[j] = reverseBoard[i + j];
     }
-    console.log(i / 4, arr2);
+    // console.log(i / 4, arr2);
     arr1.push(arr2.map((e) => e));
   }
   console.log(arr1);
+  //   return arr1;
+
+  moveSqr(arr1);
+  console.log(arr1);
+  reverseBoard = arr1.flatMap((e) => e);
+  board = reverseBoard.reverse();
+  console.log(board);
 }
 // moveRight();
-
 //-----------------------------up key--------------------------------
 function moveUp() {
   // let dirOfBoard = Array.from(Array(4), () => []);
@@ -143,14 +179,25 @@ function moveUp() {
     for (let j = 0; j < 16; j += 4) {
       arr2[j / 4] = board[i + j];
     }
-    console.log(i, arr2);
+    // console.log(i, arr2);
     arr1.push(arr2.map((e) => e));
   }
   console.log(arr1);
+  //   return arr1;
+
+  moveSqr(arr1);
+  console.log(arr1);
+
+  board = [];
+  for (let i = 0; i < 4; i++) {
+    for (let j = 0; j < 4; j++) {
+      board.push(arr1[j][i]);
+    }
+  }
+  console.log(board);
 }
 // moveUp();
-
-//-----------------------------up key--------------------------------
+//-----------------------------down key--------------------------------
 function moveDown() {
   let reverseBoard = board.map((e) => e).reverse();
   let arr1 = [];
@@ -159,15 +206,35 @@ function moveDown() {
     for (let j = 0; j < 16; j += 4) {
       arr2[j / 4] = reverseBoard[i + j];
     }
-    console.log(i, arr2);
+    // console.log(i, arr2);
     arr1.push(arr2.map((e) => e));
   }
   console.log(arr1);
+  //   return arr1;
+
+  moveSqr(arr1);
+  console.log(arr1);
+
+  board = [];
+  for (let i = 4 - 1; i >= 0; i--) {
+    for (let j = 4 - 1; j >= 0; j--) {
+      board.push(arr1[j][i]);
+    }
+  }
+  console.log(board);
 }
-moveDown();
 
-console.log(board);
-
+// moveDown();
+// console.log(board);
 //---------------------npm math.js------------------
 // let dirOfBoard = Math.reshape(board, [4, 4]);
 // console.log(dirOfBoard);
+
+//---------move the square to the direction of key  pressed------------
+function moveSqr(arr1) {
+  arr1.forEach((row) => {
+    for (let idx = row.length; idx >= 0; idx--) {
+      row[idx] == 0 ? (row.splice(idx, 1), row.push(0)) : "";
+    }
+  });
+}
