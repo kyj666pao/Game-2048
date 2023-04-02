@@ -16,6 +16,7 @@ init();
 function init() {
   //   let allSqr = document.querySelectorAll(".sqr p");
   //   allSqr.forEach((e) => e.remove());
+  //   board = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
   sizeN = 4;
   board = [];
   for (let i = 0; i < sizeN * sizeN; i++) {
@@ -68,6 +69,7 @@ function randomGenerate() {
   //   console.log(board);
 }
 
+// -------------------Handle the direction key is pressed-------------------
 function handleKeyDown(e) {
   let dirOfBoard;
   let boardTemp = board.map((e) => e);
@@ -113,6 +115,12 @@ function handleKeyDown(e) {
   }
 
   // --if all the squares are at the edge of direction of key pressed, the function end----
+  isFailed(board);
+  if (failed) {
+    console.log("-------------Failed! Try again-------------");
+    return;
+  }
+
   if (arrayEquals(board, boardTemp)) {
     return;
   }
@@ -127,11 +135,6 @@ function handleKeyDown(e) {
 
 // direction of board array
 // https://code.likeagirl.io/create-an-array-of-empty-arrays-7ec77edea546
-
-//-------------------------------------------------------
-// let dirOfBoard = Array.from(Array(4), () => []);
-// while (board.length) dirOfBoard.push(board.splice(0, 4));
-// console.log(dirOfBoard);
 
 // --------reshape the board array to 2D array of key pressed direction---------
 //--------------------------left key-----------------------------
@@ -321,6 +324,29 @@ function isWin() {
   board.forEach((e) => {
     e == 2048 ? (win = true) : "";
   });
+}
+
+function isFailed(a) {
+  for (let i = 0; i < a.length; i++) {
+    if (i % sizeN == sizeN - 1) {
+      if (a[i] == a[i + sizeN]) {
+        return;
+      }
+    } else {
+      if (a[i] == a[i + 1] || a[i] == a[i + sizeN]) {
+        return;
+      }
+    }
+  }
+
+  for (let i = 0; i < a.length; i++) {
+    if (a[i] == 0) {
+      return;
+    }
+  }
+
+  failed = true;
+  console.log(failed);
 }
 
 // check two array is equal
