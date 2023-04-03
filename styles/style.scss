@@ -60,7 +60,8 @@ section.board {
 }
 
 .menu-modal-container,
-.win-modal-container {
+.win-modal-container,
+.failed-modal-container {
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.2);
@@ -76,7 +77,8 @@ section.board {
 }
 
 .menu-modal-container.show,
-.win-modal-container.show {
+.win-modal-container.show,
+.failed-modal-container.show {
   pointer-events: auto;
   opacity: 1;
 }
@@ -93,7 +95,8 @@ section.board {
   align-items: center;
 }
 
-.win-modal {
+.win-modal,
+.failed-modal {
   background-color: #52f075;
   width: 400px;
   max-width: 100%;
@@ -104,33 +107,3 @@ section.board {
   justify-content: space-around;
   align-items: center;
 }
-
-// .win-modal-container {
-//   width: 100vw;
-//   height: 100vh;
-//   background-color: rgba(0, 0, 0, 0.2);
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   position: fixed;
-
-//   top: 0;
-//   left: 0;
-//   opacity: 0;
-//   pointer-events: none;
-// }
-
-// .failed {
-//   width: 400px;
-//   height: 250px;
-//   background: #52f075;
-//   opacity: 60%;
-//   border: none;
-//   border-radius: 40px;
-//   position: fixed;
-//   top: 20vh;
-//   display: flex;
-//   justify-content: space-around;
-//   align-items: center;
-//   margin: 10px;
-// }

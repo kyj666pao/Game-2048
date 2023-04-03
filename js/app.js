@@ -19,6 +19,10 @@ const closeMenuBtn = document.querySelectorAll(".menu-modal button");
 
 const winModal = document.querySelector(".win-modal-container");
 const winModalBtn = document.querySelectorAll(".win-modal-container button");
+const infinityBtn = document.querySelector("#infinityMode");
+
+const failedModal = document.querySelector(".failed-modal-container");
+const failedModalBtn = document.querySelector(".failed-modal-container button");
 
 /*----------------------------- Event Listeners -----------------------------*/
 body.addEventListener("keydown", handleKeyDown);
@@ -27,34 +31,29 @@ restartBtn.forEach((e) => {
   e.addEventListener("click", init);
 });
 
-menuBtn.addEventListener("click", openMenu);
-function openMenu() {
+menuBtn.addEventListener("click", () => {
   menuModal.classList.add("show");
-}
+});
 
 closeMenuBtn.forEach((e) => {
-  e.addEventListener("click", closeMenu);
+  e.addEventListener("click", () => {
+    menuModal.classList.remove("show");
+  });
 });
-function closeMenu() {
-  menuModal.classList.remove("show");
-}
 
 winModalBtn.forEach((e) => {
-  e.addEventListener("click", closeWinModal);
+  e.addEventListener("click", () => {
+    winModal.classList.remove("show");
+  });
 });
-function closeWinModal() {
-  winModal.classList.remove("show");
-}
 
-const infinityBtn = document.querySelector("#infinityMode");
 infinityBtn.addEventListener("click", () => {
   infinityMode = true;
-  console.log(`win = ${win} , infinityMode = ${infinityMode}`);
 });
-// function infinityModeStart() {
-//   infinityMode = true
-//   console.log(`win = ${win} , infinityMode = ${infinityMode}`)
-// }
+
+failedModalBtn.addEventListener("click", () => {
+  failedModal.classList.remove("show");
+});
 
 /*-------------------------------- Functions --------------------------------*/
 init();
@@ -66,10 +65,10 @@ function init() {
     board[i] = 0;
   }
   // test win
-  (board[12] = 1024),
-    (board[13] = 1024),
-    (board[14] = 1024),
-    (board[15] = 1024);
+  // (board[12] = 1024),
+  //   (board[13] = 1024),
+  //   (board[14] = 1024),
+  //   (board[15] = 1024);
   // test win
 
   score = 0;
@@ -339,6 +338,7 @@ function isFailed(a) {
   }
 
   failed = true;
+  failedModal.classList.add("show");
 }
 
 // check two array is equal
