@@ -12,9 +12,20 @@ const restartBtn = document.querySelectorAll(".restart");
 const curScoreBar = document.querySelector("#score");
 const scorePoint = document.querySelector("#score-point");
 const topPoint = document.querySelector("#top-score-in-storage");
+
 const menuBtn = document.querySelector("#menu");
 const menuModal = document.querySelector(".menu-modal-container");
 const closeMenuBtn = document.querySelectorAll(".menu-modal button");
+
+const winModal = document.querySelector(".win-modal-container");
+const winModalBtn = document.querySelectorAll(".win-modal-container button");
+
+/*----------------------------- Event Listeners -----------------------------*/
+body.addEventListener("keydown", handleKeyDown);
+
+restartBtn.forEach((e) => {
+  e.addEventListener("click", init);
+});
 
 menuBtn.addEventListener("click", openMenu);
 function openMenu() {
@@ -24,17 +35,26 @@ function openMenu() {
 closeMenuBtn.forEach((e) => {
   e.addEventListener("click", closeMenu);
 });
-
 function closeMenu() {
   menuModal.classList.remove("show");
 }
 
-/*----------------------------- Event Listeners -----------------------------*/
-body.addEventListener("keydown", handleKeyDown);
-restartBtn.forEach((e) => {
-  e.addEventListener("click", init);
+winModalBtn.forEach((e) => {
+  e.addEventListener("click", closeWinModal);
 });
-// menuBtn.addEventListener("click", menu);
+function closeWinModal() {
+  winModal.classList.remove("show");
+}
+
+const infinityBtn = document.querySelector("#infinityMode");
+infinityBtn.addEventListener("click", () => {
+  infinityMode = true;
+  console.log(`win = ${win} , infinityMode = ${infinityMode}`);
+});
+// function infinityModeStart() {
+//   infinityMode = true
+//   console.log(`win = ${win} , infinityMode = ${infinityMode}`)
+// }
 
 /*-------------------------------- Functions --------------------------------*/
 init();
@@ -45,6 +65,13 @@ function init() {
   for (let i = 0; i < sizeN * sizeN; i++) {
     board[i] = 0;
   }
+  // test win
+  (board[12] = 1024),
+    (board[13] = 1024),
+    (board[14] = 1024),
+    (board[15] = 1024);
+  // test win
+
   score = 0;
   let my2048 = {
     topScore: topScore,
@@ -134,13 +161,15 @@ function handleKeyDown(e) {
       break;
   }
 
-  // --if all the squares are at the edge of direction of key pressed, the function end----
+  isWin();
+
   isFailed(board);
   if (failed) {
     console.log("-------------Failed! Try again-------------");
     return;
   }
 
+  // --if all the squares are at the edge of direction of key pressed, the function end----
   if (arrayEquals(board, boardTemp)) {
     return;
   }
@@ -285,11 +314,7 @@ function mergeSqr(arr1) {
 function isWin() {
   if (!infinityMode) {
     board.forEach((e) => {
-      e == 2048
-        ? ((win = true),
-          //   (infinityMode = true),
-          console.log(`win = ${win} , infinityMode = ${infinityMode}`))
-        : "";
+      e == 2048 ? ((win = true), winModal.classList.add("show")) : "";
     });
   }
 }
@@ -326,15 +351,3 @@ function arrayEquals(a, b) {
     a.every((val, index) => val === b[index])
   );
 }
-
-// function menu() {
-//   let menuDiv = document.createElement("div");
-//   menuDiv.setAttribute("class", "menu");
-//   let button1 = document.createElement("button");
-//   button1.innerText = "Button1";
-//   menuDiv.append(button1);
-//   let button2 = document.createElement("button");
-//   button1.innerText = "Button2";
-//   button1.insertAdjacentElement("afterend", button2);
-//   body.append(menuDiv);
-// }
