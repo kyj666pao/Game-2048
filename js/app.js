@@ -13,17 +13,32 @@ const curScoreBar = document.querySelector("#score");
 const scorePoint = document.querySelector("#score-point");
 const topPoint = document.querySelector("#top-score-in-storage");
 const menuBtn = document.querySelector("#menu");
+const menuModal = document.querySelector(".menu-modal-container");
+const closeMenuBtn = document.querySelectorAll(".menu-modal button");
+
+menuBtn.addEventListener("click", openMenu);
+function openMenu() {
+  menuModal.classList.add("show");
+}
+
+closeMenuBtn.forEach((e) => {
+  e.addEventListener("click", closeMenu);
+});
+
+function closeMenu() {
+  menuModal.classList.remove("show");
+}
 
 /*----------------------------- Event Listeners -----------------------------*/
 body.addEventListener("keydown", handleKeyDown);
 restartBtn.forEach((e) => {
   e.addEventListener("click", init);
 });
-menuBtn.addEventListener("click", menu);
+// menuBtn.addEventListener("click", menu);
 
 /*-------------------------------- Functions --------------------------------*/
 init();
-
+console.log("Hello World");
 function init() {
   sizeN = 4;
   board = [];
@@ -312,14 +327,14 @@ function arrayEquals(a, b) {
   );
 }
 
-function menu() {
-  let menuDiv = document.createElement("div");
-  menuDiv.setAttribute("class", "menu");
-  let button1 = document.createElement("button");
-  button1.innerText = "Button1";
-  menuDiv.appendChild(button1);
-  let button2 = document.createElement("button");
-  button1.innerText = "Button2";
-  menuDiv.appendChild(button2);
-  body.append(menuDiv);
-}
+// function menu() {
+//   let menuDiv = document.createElement("div");
+//   menuDiv.setAttribute("class", "menu");
+//   let button1 = document.createElement("button");
+//   button1.innerText = "Button1";
+//   menuDiv.append(button1);
+//   let button2 = document.createElement("button");
+//   button1.innerText = "Button2";
+//   button1.insertAdjacentElement("afterend", button2);
+//   body.append(menuDiv);
+// }
