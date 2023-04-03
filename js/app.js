@@ -6,13 +6,13 @@ let board, win, failed, sizeN, score, topScore, infinityMode, is2048, digiWorld;
 
 /*------------------------ Cached Element References ------------------------*/
 const sqrEls = document.querySelectorAll(".sqr");
-const currentScore = document.querySelector(".current-score");
 const body = document.querySelector("body");
-const restartBtn = document.querySelectorAll(".restart");
+
 const curScoreBar = document.querySelector("#score");
 const scorePoint = document.querySelector("#score-point");
 const topPoint = document.querySelector("#top-score-in-storage");
 
+const restartBtn = document.querySelectorAll(".restart");
 const menuBtn = document.querySelector("#menu");
 const menuModal = document.querySelector(".menu-modal-container");
 const closeMenuBtn = document.querySelectorAll(".menu-modal button");
@@ -102,8 +102,12 @@ function updateBoard() {
   sqrEls.forEach((e, idx) => {
     let sqrContent = document.createElement("p");
     board[idx] == 0
-      ? ((sqrContent.innerHTML = " "), e.append(sqrContent))
-      : ((sqrContent.innerHTML = board[idx]), e.append(sqrContent));
+      ? ((sqrContent.innerHTML = " "),
+        sqrContent.classList.add("num0"),
+        e.append(sqrContent))
+      : ((sqrContent.innerHTML = board[idx]),
+        sqrContent.classList.add(`num${board[idx]}`),
+        e.append(sqrContent));
   });
 }
 

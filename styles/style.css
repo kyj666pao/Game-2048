@@ -15,6 +15,7 @@ html {
 }
 
 body {
+  background: whitesmoke;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -28,7 +29,8 @@ body {
 .top-score {
   width: 90vw;
   height: 20px;
-  border: 2px solid black;
+  border: 2px solid red;
+  background: rgb(216, 216, 186);
 }
 
 #score {
@@ -44,17 +46,15 @@ body {
 
 section.board {
   display: grid;
-  width: 61.5vh;
+  width: 62vh;
   grid-template-rows: repeat(4, 15vh);
   grid-template-columns: repeat(4, 15vh);
   grid-gap: 0vmin;
   margin: 0.5rem;
-  border: 5px solid rgb(14, 96, 121);
-  border-radius: 10px;
 }
 
 .sqr {
-  border: 2px solid black;
+  border: 1vmin solid rgb(14, 96, 121);
   font-size: 8vmin;
   text-align: center;
   display: flex;
@@ -108,4 +108,21 @@ section.board {
   display: flex;
   justify-content: space-around;
   align-items: center;
+}
+
+button {
+  background-color: #5e67bb;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 24px;
+}
+
+#menu {
+  background: linear-gradient(270deg, rgb(239, 85, 36), rgb(33, 121, 203));
+}
+
+#restart {
+  background: linear-gradient(270deg, rgb(33, 121, 203), rgb(239, 85, 36));
 }/*# sourceMappingURL=style.css.map */
