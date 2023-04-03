@@ -1,39 +1,36 @@
-console.log("Hello World");
 /*-------------------------------- Constants --------------------------------*/
 const numSqr = [0, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048];
-const sqrEls = document.querySelectorAll(".sqr");
-const currentScore = document.querySelector(".current-score");
-const body = document.querySelector("body");
-const restartBtn = document.querySelectorAll(".restart");
-const scorePoint = document.querySelector("#score-point");
-const topPoint = document.querySelector("#top-score-in-storage");
 
 /*---------------------------- Variables (state) ----------------------------*/
 let board, win, failed, sizeN, score, topScore, infinityMode, is2048, digiWorld;
 
 /*------------------------ Cached Element References ------------------------*/
+const sqrEls = document.querySelectorAll(".sqr");
+const currentScore = document.querySelector(".current-score");
+const body = document.querySelector("body");
+const restartBtn = document.querySelectorAll(".restart");
+const curScoreBar = document.querySelector("#score");
+const scorePoint = document.querySelector("#score-point");
+const topPoint = document.querySelector("#top-score-in-storage");
+const menuBtn = document.querySelector("#menu");
 
 /*----------------------------- Event Listeners -----------------------------*/
 body.addEventListener("keydown", handleKeyDown);
 restartBtn.forEach((e) => {
   e.addEventListener("click", init);
 });
+menuBtn.addEventListener("click", menu);
 
 /*-------------------------------- Functions --------------------------------*/
 init();
 
 function init() {
-  //   let allSqr = document.querySelectorAll(".sqr p");
-  //   allSqr.forEach((e) => e.remove());
-  //   board = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
   sizeN = 4;
   board = [];
   for (let i = 0; i < sizeN * sizeN; i++) {
     board[i] = 0;
   }
-  //   console.log(board);
   score = 0;
-  //   topScore = 1000000;
   let my2048 = {
     topScore: topScore,
     digiWorld: digiWorld,
@@ -46,11 +43,8 @@ function init() {
     topScore = 0;
     localStorage.setItem("top-score", topScore);
   }
-  // else {
-  //   topScore = localStorage.getItem("topScore");
-  //   // topScore = Number(topScore).toFixed(0);
-  // }
 
+  curScoreBar.style.width = "0";
   win = false;
   failed = false;
   infinityMode = false;
@@ -73,29 +67,15 @@ function updateBoard() {
 }
 
 function randomGenerate() {
-  //   console.log(board);
   //  create a list for index of square of blank
   let blankList = [];
   board.forEach((e, idx) => {
     e == 0 ? blankList.push(idx) : "";
   });
-  //   console.log(blankList);
   // pick a square randomly to generate the number
   let whereGenerate = blankList[Math.floor(Math.random() * blankList.length)];
-  //   console.log(`whereGenerate: ${whereGenerate}`);
-
   let probability = Math.floor(Math.random() * 10);
-  //   console.log(`probability: ${probability}`);
-
   board[whereGenerate] = probability < 9 ? 2 : 4;
-
-  //   let sqrContent = document.createElement("p");
-  //   Num = probability < 9 ? 2 : 4;
-  //   console.log(Num);
-  //   sqrContent.innerHTML = Num;
-  //   let sqr = document.querySelector(`#sq${whereGenerate}`);
-  //   sqr.append(sqrContent);
-  //   console.log(board);
 }
 
 // -------------------Handle the direction key is pressed-------------------
@@ -150,7 +130,6 @@ function handleKeyDown(e) {
     return;
   }
 
-  //   console.log(score);
   scorePoint.innerHTML = `${score} : Now`;
   if (topScore > score) {
     topScore = topScore;
@@ -159,11 +138,12 @@ function handleKeyDown(e) {
   }
   topPoint.innerHTML = `Top: ${topScore}`;
   localStorage.setItem("top-score", topScore);
+  curScoreBar.style.width = `${((score / topScore) * 100).toFixed(0)}%`;
   randomGenerate();
   updateBoard();
 }
 
-// credit: detecting-the-pressed-arrow-key
+// detecting-the-pressed-arrow-key
 // https://www.geeksforgeeks.org/javascript-detecting-the-pressed-arrow-key/
 
 // direction of board array
@@ -172,105 +152,61 @@ function handleKeyDown(e) {
 // --------reshape the board array to 2D array of key pressed direction---------
 //--------------------------left key-----------------------------
 function moveLeft() {
-  // let dirOfBoard = Array.from(Array(4), () => []);
   let arr1 = [];
   let arr2 = [];
   for (let i = 0; i < 16; i += 4) {
     for (let j = 0; j < 4; j++) {
       arr2[j] = board[i + j];
     }
-    // console.log(i / 4, arr2);
     arr1.push(arr2.map((e) => e));
   }
-  //   console.log(arr1);
   return arr1;
-
-  //   moveSqr(arr1);
-  //   console.log(arr1);
-  //   mergeSqr(arr1);
-  //   console.log(arr1);
-  //   moveSqr(arr1);
-  //   console.log(arr1);
-
-  //   board = arr1.flatMap((e) => e);
 }
 
 function convertBackLeft(arr1) {
   board = arr1.flatMap((e) => e);
 }
 
-// moveLeft();
 //--------------------------right key-----------------------------
 function moveRight() {
   let reverseBoard = board.map((e) => e).reverse();
-  //   console.log(reverseBoard);
   let arr1 = [];
   let arr2 = [];
   for (let i = 0; i < 16; i += 4) {
     for (let j = 0; j < 4; j++) {
       arr2[j] = reverseBoard[i + j];
     }
-    // console.log(i / 4, arr2);
     arr1.push(arr2.map((e) => e));
   }
-  //   console.log(arr1);
   return arr1;
-
-  //   moveSqr(arr1);
-  //   console.log(arr1);
-  //   mergeSqr(arr1);
-  //   console.log(arr1);
-  //   moveSqr(arr1);
-  //   console.log(arr1);
-
-  //   reverseBoard = arr1.flatMap((e) => e);
-  //   board = reverseBoard.reverse();
 }
+
 function convertBackRight(arr1) {
   let reverseBoard = arr1.flatMap((e) => e);
   board = reverseBoard.reverse();
 }
 
-// moveRight();
 //-----------------------------up key--------------------------------
 function moveUp() {
-  // let dirOfBoard = Array.from(Array(4), () => []);
   let arr1 = [];
   let arr2 = [];
   for (let i = 0; i < 4; i++) {
     for (let j = 0; j < 16; j += 4) {
       arr2[j / 4] = board[i + j];
     }
-    // console.log(i, arr2);
     arr1.push(arr2.map((e) => e));
   }
-  //   console.log(arr1);
   return arr1;
-
-  //   moveSqr(arr1);
-  //   console.log(arr1);
-  //   mergeSqr(arr1);
-  //   console.log(arr1);
-  //   moveSqr(arr1);
-  //   console.log(arr1);
-
-  //   board = [];
-  //   for (let i = 0; i < 4; i++) {
-  //     for (let j = 0; j < 4; j++) {
-  //       board.push(arr1[j][i]);
-  //     }
-  //   }
 }
 
 function convertBackUp(arr1) {
-  //   board = [];
   for (let i = 0; i < 4; i++) {
     for (let j = 0; j < 4; j++) {
       board.push(arr1[j][i]);
     }
   }
 }
-// moveUp();
+
 //-----------------------------down key--------------------------------
 function moveDown() {
   let reverseBoard = board.map((e) => e).reverse();
@@ -280,41 +216,19 @@ function moveDown() {
     for (let j = 0; j < 16; j += 4) {
       arr2[j / 4] = reverseBoard[i + j];
     }
-    // console.log(i, arr2);
+
     arr1.push(arr2.map((e) => e));
   }
-  //   console.log(arr1);
   return arr1;
-
-  //   moveSqr(arr1);
-  //   console.log(arr1);
-  //   mergeSqr(arr1);
-  //   console.log(arr1);
-  //   moveSqr(arr1);
-  //   console.log(arr1);
-
-  // board = [];
-  //   for (let i = 4 - 1; i >= 0; i--) {
-  //     for (let j = 4 - 1; j >= 0; j--) {
-  //       board.push(arr1[j][i]);
-  //     }
-  //   }
 }
 
 function convertBackDown(arr1) {
-  //   board = [];
   for (let i = 4 - 1; i >= 0; i--) {
     for (let j = 4 - 1; j >= 0; j--) {
       board.push(arr1[j][i]);
     }
   }
 }
-
-// moveDown();
-// console.log(board);
-//---------------------npm math.js------------------
-// let dirOfBoard = Math.reshape(board, [4, 4]);
-// console.log(dirOfBoard);
 
 //---------move the square to the direction of key  pressed------------
 function moveSqr(arr1) {
@@ -385,7 +299,6 @@ function isFailed(a) {
   }
 
   failed = true;
-  console.log(failed);
 }
 
 // check two array is equal
@@ -397,4 +310,16 @@ function arrayEquals(a, b) {
     a.length === b.length &&
     a.every((val, index) => val === b[index])
   );
+}
+
+function menu() {
+  let menuDiv = document.createElement("div");
+  menuDiv.setAttribute("class", "menu");
+  let button1 = document.createElement("button");
+  button1.innerText = "Button1";
+  menuDiv.appendChild(button1);
+  let button2 = document.createElement("button");
+  button1.innerText = "Button2";
+  menuDiv.appendChild(button2);
+  body.append(menuDiv);
 }

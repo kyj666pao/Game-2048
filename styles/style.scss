@@ -32,7 +32,7 @@ body {
 #score {
   background: red;
   height: 100%;
-  width: 90%;
+  width: 0;
 }
 .scoreNum {
   display: flex;
@@ -57,4 +57,44 @@ section.board {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.menu {
+  width: 400px;
+  height: 350px;
+  background: #52f075;
+  opacity: 60%;
+  border: none;
+  border-radius: 40px;
+  position: fixed;
+  top: 20vh;
+  z-index: 50;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 10px;
+}
+
+.win,
+.failed {
+  width: 400px;
+  height: 250px;
+  background: #52f075;
+  opacity: 60%;
+  border: none;
+  border-radius: 40px;
+  position: fixed;
+  top: 20vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 10px;
+}
+
+.win {
+  z-index: 60;
+}
+
+.failed {
+  z-index: 70;
 }
