@@ -27,11 +27,11 @@
   <body>
     <div class="scoreBar">
       <div class="top-score">
-        <div class="current-score"></div>
+        <div id="score"></div>
       </div>
-      <div class="score">
-        <h2>2048: Now</h2>
-        <h2>Top: 10384</h2>
+      <div class="scoreNum">
+        <h2 id="score-point">0: Now</h2>
+        <h2 id="top-score-in-storage">Top: 10384</h2>
       </div>
     </div>
     <section class="board">
@@ -52,6 +52,10 @@
       <div class="sqr" id="sq14"></div>
       <div class="sqr" id="sq15"></div>
     </section>
+    <div class="btn">
+      <button class="menu">Menu</button>
+      <button class="restart">Restart</button>
+    </div>
   </body>
   <script src="./js/app.js"></script>
 </html>

@@ -4,11 +4,20 @@ const numSqr = [0, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048];
 const sqrEls = document.querySelectorAll(".sqr");
 const currentScore = document.querySelector(".current-score");
 const body = document.querySelector("body");
+const restartBtn = document.querySelectorAll(".restart");
+const scorePoint = document.querySelector("#score-point");
+const topPoint = document.querySelector("#top-score-in-storage");
+
 /*---------------------------- Variables (state) ----------------------------*/
-let board, win, failed, sizeN, score;
+let board, win, failed, sizeN, score, topScore, infinityMode, is2048, digiWorld;
+
+/*------------------------ Cached Element References ------------------------*/
 
 /*----------------------------- Event Listeners -----------------------------*/
 body.addEventListener("keydown", handleKeyDown);
+restartBtn.forEach((e) => {
+  e.addEventListener("click", init);
+});
 
 /*-------------------------------- Functions --------------------------------*/
 init();
@@ -24,11 +33,31 @@ function init() {
   }
   //   console.log(board);
   score = 0;
+  //   topScore = 1000000;
+  let my2048 = {
+    topScore: topScore,
+    digiWorld: digiWorld,
+    is2048: is2048,
+  };
+  //   localStorage.clear();
+  topScore = localStorage.getItem("top-score");
+  if (topScore == null) {
+    // localStorage.setItem("top-score", JSON.stringify([my2048]));
+    topScore = 0;
+    localStorage.setItem("top-score", topScore);
+  }
+  // else {
+  //   topScore = localStorage.getItem("topScore");
+  //   // topScore = Number(topScore).toFixed(0);
+  // }
+
   win = false;
   failed = false;
+  infinityMode = false;
+  scorePoint.innerHTML = "0 : Now";
+  topPoint.innerHTML = `Top: ${topScore}`;
   randomGenerate();
   randomGenerate();
-
   updateBoard();
 }
 
@@ -76,19 +105,15 @@ function handleKeyDown(e) {
 
   switch (e.key) {
     case "ArrowLeft":
-      console.log("Left Key pressed!");
       dirOfBoard = moveLeft();
       break;
     case "ArrowRight":
-      console.log("Right Key pressed!");
       dirOfBoard = moveRight();
       break;
     case "ArrowUp":
-      console.log("Up Key pressed!");
       dirOfBoard = moveUp();
       break;
     case "ArrowDown":
-      console.log("Down Key pressed!");
       dirOfBoard = moveDown();
       break;
   }
@@ -125,7 +150,15 @@ function handleKeyDown(e) {
     return;
   }
 
-  console.log(score);
+  //   console.log(score);
+  scorePoint.innerHTML = `${score} : Now`;
+  if (topScore > score) {
+    topScore = topScore;
+  } else {
+    topScore = score;
+  }
+  topPoint.innerHTML = `Top: ${topScore}`;
+  localStorage.setItem("top-score", topScore);
   randomGenerate();
   updateBoard();
 }
@@ -321,9 +354,15 @@ function mergeSqr(arr1) {
 }
 
 function isWin() {
-  board.forEach((e) => {
-    e == 2048 ? (win = true) : "";
-  });
+  if (!infinityMode) {
+    board.forEach((e) => {
+      e == 2048
+        ? ((win = true),
+          //   (infinityMode = true),
+          console.log(`win = ${win} , infinityMode = ${infinityMode}`))
+        : "";
+    });
+  }
 }
 
 function isFailed(a) {

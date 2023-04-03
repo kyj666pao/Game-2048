@@ -29,15 +29,14 @@ body {
   height: 20px;
   border: 2px solid black;
 }
-.score {
-    display: flex;
-    justify-content: space-around;
-}
-
-.current-score {
+#score {
   background: red;
   height: 100%;
   width: 90%;
+}
+.scoreNum {
+  display: flex;
+  justify-content: space-between;
 }
 
 section.board {
