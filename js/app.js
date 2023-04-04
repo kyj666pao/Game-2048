@@ -12,6 +12,8 @@ const topPoint = document.querySelector("#top-score-in-storage");
 
 const restartBtn = document.querySelectorAll(".restart");
 const menuBtn = document.querySelector("#menu");
+const ruleBtn = document.querySelector(".ruleBtn");
+const ruleCloseBtn = document.querySelector(".rule button");
 const menuModal = document.querySelector(".menu-modal-container");
 const closeMenuBtn = document.querySelectorAll(".menu-modal button");
 const lightBtn = document.querySelector("#light");
@@ -24,6 +26,7 @@ const infinityBtn = document.querySelector("#infinityMode");
 const failedModal = document.querySelector(".failed-modal-container");
 const failedModalBtn = document.querySelector(".failed-modal-container button");
 
+const ruleModal = document.querySelector(".rule-modal");
 /*----------------------------- Event Listeners -----------------------------*/
 body.addEventListener("keydown", handleKeyDown);
 
@@ -33,6 +36,14 @@ restartBtn.forEach((e) => {
 
 menuBtn.addEventListener("click", () => {
   menuModal.classList.add("show");
+});
+
+ruleBtn.addEventListener("click", () => {
+  ruleModal.classList.add("show");
+});
+
+ruleCloseBtn.addEventListener("click", () => {
+  ruleModal.classList.remove("show");
 });
 
 closeMenuBtn.forEach((e) => {
@@ -65,7 +76,9 @@ function init() {
   for (let i = 0; i < sizeN * sizeN; i++) {
     board[i] = 0;
   }
-
+  board = [
+    8, 4, 2, 2, 16, 32, 64, 128, 2048, 1024, 512, 256, 4096, 8192, 16384, 32768,
+  ];
   score = 0;
   topScore = localStorage.getItem("top-score");
   if (topScore == null) {

@@ -69,6 +69,13 @@ section.board .sqr {
 section.board .sqr p {
   color: white;
 }
+section.board .num2 p,
+section.board .num4096 p,
+section.board .num8192 p,
+section.board .num16384 p,
+section.board .num32768 p {
+  color: rgb(56, 46, 46);
+}
 
 .num2 {
   background: #c0b2b2;
@@ -160,9 +167,30 @@ section.board .sqr p {
   justify-content: space-around;
 }
 
+.rule {
+  width: 500px;
+  height: 300px;
+  background: #8e9dc5;
+  padding: 20px;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 15px;
+}
+.rule h3 {
+  color: whitesmoke;
+  padding: 10px;
+}
+.rule p {
+  color: whitesmoke;
+  margin: 1rem 0;
+}
+
 .menu-modal-container,
 .win-modal-container,
-.failed-modal-container {
+.failed-modal-container,
+.rule-modal {
   width: 100vw;
   height: 100vh;
   max-height: 720px;
@@ -179,7 +207,8 @@ section.board .sqr p {
 
 .menu-modal-container.show,
 .win-modal-container.show,
-.failed-modal-container.show {
+.failed-modal-container.show,
+.rule-modal.show {
   pointer-events: auto;
   opacity: 1;
 }
@@ -220,6 +249,15 @@ button:hover {
   background: linear-gradient(270deg, rgb(33, 121, 203), rgb(239, 85, 36));
 }
 
+.ruleBtn {
+  background: linear-gradient(225deg, rgb(180, 24, 219), rgb(123, 243, 26));
+}
+
+.rule button {
+  width: 100px;
+  margin-top: 20px;
+}
+
 body.light-mode {
   background: whitesmoke;
 }
@@ -239,6 +277,14 @@ body.light-mode section.board .sqr {
 }
 body.light-mode section.board .sqr p {
   color: #222fa3;
+}
+body.light-mode section.board .num128 p,
+body.light-mode section.board .num256 p,
+body.light-mode section.board .num2048 p {
+  color: #fdfdfd;
+}
+body.light-mode section.board .num4096 p {
+  color: #1b1717;
 }
 body.light-mode .num2 {
   background: #eedddd;
@@ -304,6 +350,20 @@ body.light-mode button:hover {
   background-color: #222fa3;
   color: rgb(250, 215, 150);
 }
+body.light-mode #menu {
+  background: linear-gradient(270deg, rgb(239, 85, 36), rgb(33, 121, 203));
+  color: white;
+}
+body.light-mode #restart {
+  background: linear-gradient(270deg, rgb(33, 121, 203), rgb(239, 85, 36));
+  color: white;
+}
+body.light-mode .rule h3 {
+  color: rgb(46, 39, 39);
+}
+body.light-mode .rule p {
+  color: rgb(46, 39, 39);
+}
 
 body.rainbow-mode {
   justify-content: flex-start;
@@ -315,7 +375,7 @@ body.rainbow-mode .top-score {
   background: linear-gradient(90deg, rgb(10, 110, 240), #f3ab10);
 }
 body.rainbow-mode .scoreNum h2 {
-  color: rgb(248, 64, 64);
+  color: rgb(43, 47, 228);
 }
 body.rainbow-mode section.board {
   background: #575454;
@@ -326,6 +386,12 @@ body.rainbow-mode section.board .sqr {
 }
 body.rainbow-mode section.board .sqr p {
   color: #222fa3;
+}
+body.rainbow-mode section.board .num4096 p,
+body.rainbow-mode section.board .num8192 p,
+body.rainbow-mode section.board .num16384 p,
+body.rainbow-mode section.board .num32768 p {
+  color: whitesmoke;
 }
 body.rainbow-mode .num2 {
   background: linear-gradient(225deg, #faa3a3, rgb(253, 250, 54));
@@ -465,6 +531,9 @@ body.rainbow-mode #restart {
   section.board .sqr {
     border: 0.3rem solid rgb(211, 241, 250);
     border-radius: 10px;
+  }
+  .rule {
+    width: 350px;
   }
   body.light-mode section.board {
     display: grid;
