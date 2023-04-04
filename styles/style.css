@@ -56,17 +56,17 @@ section.board {
   grid-gap: 0vmin;
   margin: 0.5rem;
   border: 0.3rem solid rgb(211, 241, 250);
+  border-radius: 16px;
 }
-
-.sqr {
+section.board .sqr {
   border: 0.3rem solid rgb(211, 241, 250);
-  font-size: 8vmin;
   text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 10px;
 }
-.sqr p {
+section.board .sqr p {
   color: white;
 }
 
@@ -154,11 +154,18 @@ section.board {
   background: #acabab;
 }
 
+.btn {
+  width: 350px;
+  display: flex;
+  justify-content: space-around;
+}
+
 .menu-modal-container,
 .win-modal-container,
 .failed-modal-container {
   width: 100vw;
   height: 100vh;
+  max-height: 720px;
   background-color: rgba(0, 0, 0, 0.2);
   display: flex;
   justify-content: center;
@@ -177,38 +184,32 @@ section.board {
   opacity: 1;
 }
 
-.menu-modal {
-  background-color: #52f075;
-  width: 400px;
-  max-width: 100%;
-  height: 500px;
-  border: none;
-  border-radius: 40px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-
+.menu-modal,
 .win-modal,
 .failed-modal {
-  background-color: #52f075;
+  background-color: #8e9dc5;
   width: 400px;
   max-width: 100%;
-  height: 300px;
+  height: 200px;
   border: none;
-  border-radius: 40px;
+  border-radius: 20px;
   display: flex;
   justify-content: space-around;
   align-items: center;
 }
 
 button {
-  background-color: #5e67bb;
+  background-color: #404baf;
   color: white;
   border: none;
   border-radius: 10px;
   padding: 10px 20px;
   font-size: 24px;
+}
+
+button:hover {
+  background-color: #222fa3;
+  color: rgb(250, 215, 150);
 }
 
 #menu {
@@ -217,4 +218,181 @@ button {
 
 #restart {
   background: linear-gradient(270deg, rgb(33, 121, 203), rgb(239, 85, 36));
+}
+
+body.light-mode {
+  background: whitesmoke;
+}
+body.light-mode .top-score {
+  border: 2px solid red;
+  background: rgb(253, 253, 253);
+}
+body.light-mode .scoreNum h2 {
+  color: rgb(248, 64, 64);
+}
+body.light-mode section.board {
+  background: #575454;
+  border: 0.3rem solid rgb(181, 229, 243);
+}
+body.light-mode section.board .sqr {
+  border: 0.3rem solid rgb(181, 229, 243);
+}
+body.light-mode section.board .sqr p {
+  color: #222fa3;
+}
+body.light-mode .num2 {
+  background: #eedddd;
+}
+body.light-mode .num4 {
+  background: #f7c7c7;
+}
+body.light-mode .num8 {
+  background: #f8aeae;
+}
+body.light-mode .num16 {
+  background: #fa9494;
+}
+body.light-mode .num32 {
+  background: #f57575;
+}
+body.light-mode .num64 {
+  background: #f85252;
+}
+body.light-mode .num128 {
+  background: #f74444;
+}
+body.light-mode .num256 {
+  background: #fa471e;
+}
+body.light-mode .num512 {
+  background: #f89603;
+}
+body.light-mode .num1024 {
+  background: #f8f403;
+}
+body.light-mode .num2048 {
+  background: #ff0000;
+}
+body.light-mode .num4096 {
+  background: linear-gradient(45deg, #fd0505, rgb(245, 225, 47));
+}
+body.light-mode .num8192 {
+  background: linear-gradient(45deg, #fd7d05, rgb(159, 245, 47));
+}
+body.light-mode .num16384 {
+  background: linear-gradient(45deg, #fdc305, rgb(52, 255, 2));
+}
+body.light-mode .num32768 {
+  background: linear-gradient(45deg, #a6fd05, rgb(72, 209, 233));
+}
+body.light-mode .num65536 {
+  background: linear-gradient(45deg, #05c3fd, rgb(182, 47, 245));
+}
+body.light-mode .num0 {
+  background: #c5b4b4;
+}
+body.light-mode .menu-modal,
+body.light-mode .win-modal,
+body.light-mode .failed-modal {
+  background-color: #45506e;
+}
+body.light-mode button {
+  background-color: #ebe85d;
+  color: #222fa3;
+}
+body.light-mode button:hover {
+  background-color: #222fa3;
+  color: rgb(250, 215, 150);
+}
+
+body.rainbow-mode {
+  background: linear-gradient(135deg, #f3ef10, rgb(10, 224, 240));
+  height: 100vh;
+}
+body.rainbow-mode .top-score {
+  border: 2px solid rgb(247, 244, 244);
+  background: linear-gradient(90deg, rgb(10, 110, 240), #f3ab10);
+}
+body.rainbow-mode .scoreNum h2 {
+  color: rgb(248, 64, 64);
+}
+body.rainbow-mode section.board {
+  background: #575454;
+  border: 0.3rem solid rgb(170, 164, 159);
+}
+body.rainbow-mode section.board .sqr {
+  border: 0.3rem solid rgb(170, 164, 159);
+}
+body.rainbow-mode section.board .sqr p {
+  color: #222fa3;
+}
+body.rainbow-mode .num2 {
+  background: linear-gradient(225deg, #faa3a3, rgb(253, 250, 54));
+}
+body.rainbow-mode .num4 {
+  background: linear-gradient(225deg, #f87171, rgb(221, 219, 82));
+}
+body.rainbow-mode .num8 {
+  background: linear-gradient(225deg, #f85353, rgb(192, 240, 22));
+}
+body.rainbow-mode .num16 {
+  background: linear-gradient(225deg, #e08548, rgb(153, 238, 84));
+}
+body.rainbow-mode .num32 {
+  background: linear-gradient(225deg, #f7873d, rgb(255, 251, 0));
+}
+body.rainbow-mode .num64 {
+  background: linear-gradient(225deg, #f8af10, rgb(115, 255, 0));
+}
+body.rainbow-mode .num128 {
+  background: linear-gradient(225deg, #f8e910, rgb(51, 255, 0));
+}
+body.rainbow-mode .num256 {
+  background: linear-gradient(225deg, #bafa53, rgb(47, 230, 236));
+}
+body.rainbow-mode .num512 {
+  background: linear-gradient(225deg, #72fc01, rgb(12, 179, 245));
+}
+body.rainbow-mode .num1024 {
+  background: linear-gradient(225deg, #5bf07b, rgb(53, 99, 250));
+}
+body.rainbow-mode .num2048 {
+  background: linear-gradient(225deg, #5bc1f0, rgb(216, 86, 248));
+}
+body.rainbow-mode .num4096 {
+  background: linear-gradient(225deg, #2267fc, rgb(252, 49, 225));
+}
+body.rainbow-mode .num8192 {
+  background: linear-gradient(225deg, #3f31fc, rgb(255, 12, 174));
+}
+body.rainbow-mode .num16384 {
+  background: linear-gradient(225deg, #5d22ff, rgb(253, 0, 63));
+}
+body.rainbow-mode .num32768 {
+  background: linear-gradient(225deg, #d322ff, rgb(0, 194, 253));
+}
+body.rainbow-mode .num65536 {
+  background: linear-gradient(225deg, #ff0a91, rgb(250, 246, 23));
+}
+body.rainbow-mode .num0 {
+  background: linear-gradient(225deg, #ff3c00, rgb(23, 167, 250));
+}
+body.rainbow-mode .menu-modal,
+body.rainbow-mode .win-modal,
+body.rainbow-mode .failed-modal {
+  background: linear-gradient(225deg, #00e1ff, rgb(216, 250, 23));
+}
+body.rainbow-mode button {
+  background-color: #ff8432;
+  color: #222fa3;
+}
+body.rainbow-mode button:hover {
+  background-color: #f7d25a;
+  color: rgb(61, 147, 245);
+}
+body.rainbow-mode #menu {
+  background: linear-gradient(90deg, rgb(229, 27, 247), rgb(255, 251, 24));
+}
+body.rainbow-mode #restart {
+  background: linear-gradient(90deg, rgb(255, 251, 24), rgb(36, 239, 63));
 }/*# sourceMappingURL=style.css.map */

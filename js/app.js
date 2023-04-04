@@ -16,6 +16,8 @@ const restartBtn = document.querySelectorAll(".restart");
 const menuBtn = document.querySelector("#menu");
 const menuModal = document.querySelector(".menu-modal-container");
 const closeMenuBtn = document.querySelectorAll(".menu-modal button");
+const lightBtn = document.querySelector("#light");
+const rainbowBtn = document.querySelector("#rainbow");
 
 const winModal = document.querySelector(".win-modal-container");
 const winModalBtn = document.querySelectorAll(".win-modal-container button");
@@ -40,6 +42,8 @@ closeMenuBtn.forEach((e) => {
     menuModal.classList.remove("show");
   });
 });
+lightBtn.addEventListener("click", LightDark);
+rainbowBtn.addEventListener("click", rainbow);
 
 winModalBtn.forEach((e) => {
   e.addEventListener("click", () => {
@@ -57,7 +61,6 @@ failedModalBtn.addEventListener("click", () => {
 
 /*-------------------------------- Functions --------------------------------*/
 init();
-console.log("Hello World");
 function init() {
   sizeN = 4;
   board = [];
@@ -65,9 +68,9 @@ function init() {
     board[i] = 0;
   }
   //test for fun
-  // board = [
-  //   8, 4, 2, 2, 16, 32, 64, 128, 2048, 1024, 512, 256, 4096, 8192, 16384, 32768,
-  // ];
+  board = [
+    8, 4, 2, 2, 16, 32, 64, 128, 2048, 1024, 512, 256, 4096, 8192, 16384, 32768,
+  ];
   //test
 
   score = 0;
@@ -356,4 +359,16 @@ function arrayEquals(a, b) {
     a.length === b.length &&
     a.every((val, index) => val === b[index])
   );
+}
+
+function LightDark() {
+  body.className == "light-mode"
+    ? body.removeAttribute("class")
+    : body.setAttribute("class", "light-mode");
+}
+
+function rainbow() {
+  body.className == "rainbow-mode"
+    ? body.removeAttribute("class")
+    : body.setAttribute("class", "rainbow-mode");
 }

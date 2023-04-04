@@ -55,17 +55,17 @@ section.board {
   grid-gap: 0vmin;
   margin: 0.5rem;
   border: 0.3rem solid rgb(211, 241, 250);
-}
-
-.sqr {
-  border: 0.3rem solid rgb(211, 241, 250);
-  font-size: 8vmin;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  p {
-    color: white;
+  border-radius: 16px;
+  .sqr {
+    border: 0.3rem solid rgb(211, 241, 250);
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    p {
+      color: white;
+    }
   }
 }
 
@@ -137,11 +137,18 @@ section.board {
   background: #acabab;
 }
 
+.btn {
+  width: 350px;
+  display: flex;
+  justify-content: space-around;
+}
+
 .menu-modal-container,
 .win-modal-container,
 .failed-modal-container {
   width: 100vw;
   height: 100vh;
+  max-height: 720px;
   background-color: rgba(0, 0, 0, 0.2);
   display: flex;
   justify-content: center;
@@ -161,38 +168,33 @@ section.board {
   opacity: 1;
 }
 
-.menu-modal {
-  background-color: #52f075;
-  width: 400px;
-  max-width: 100%;
-  height: 500px;
-  border: none;
-  border-radius: 40px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-
+.menu-modal,
 .win-modal,
 .failed-modal {
-  background-color: #52f075;
+  background-color: #8e9dc5;
   width: 400px;
   max-width: 100%;
-  height: 300px;
+  height: 200px;
+  // opacity: 0.8;
   border: none;
-  border-radius: 40px;
+  border-radius: 20px;
   display: flex;
   justify-content: space-around;
   align-items: center;
 }
 
 button {
-  background-color: #5e67bb;
+  background-color: #404baf;
   color: white;
   border: none;
   border-radius: 10px;
   padding: 10px 20px;
   font-size: 24px;
+}
+
+button:hover {
+  background-color: #222fa3;
+  color: rgb(250, 215, 150);
 }
 
 #menu {
@@ -201,4 +203,186 @@ button {
 
 #restart {
   background: linear-gradient(270deg, rgb(33, 121, 203), rgb(239, 85, 36));
+}
+
+body.light-mode {
+  background: whitesmoke;
+  .top-score {
+    border: 2px solid red;
+    background: rgb(253, 253, 253);
+  }
+  .scoreNum {
+    h2 {
+      color: rgb(248, 64, 64);
+    }
+  }
+  section.board {
+    background: #575454;
+    border: 0.3rem solid rgb(181, 229, 243);
+    .sqr {
+      border: 0.3rem solid rgb(181, 229, 243);
+      p {
+        color: #222fa3;
+      }
+    }
+  }
+  .num2 {
+    background: #eedddd;
+  }
+  .num4 {
+    background: #f7c7c7;
+  }
+  .num8 {
+    background: #f8aeae;
+  }
+  .num16 {
+    background: #fa9494;
+  }
+  .num32 {
+    background: #f57575;
+  }
+  .num64 {
+    background: #f85252;
+  }
+  .num128 {
+    background: #f74444;
+  }
+  .num256 {
+    background: #fa471e;
+  }
+  .num512 {
+    background: #f89603;
+  }
+  .num1024 {
+    background: #f8f403;
+  }
+  .num2048 {
+    background: #ff0000;
+  }
+  .num4096 {
+    background: linear-gradient(45deg, #fd0505, rgb(245, 225, 47));
+  }
+  .num8192 {
+    background: linear-gradient(45deg, #fd7d05, rgb(159, 245, 47));
+  }
+  .num16384 {
+    background: linear-gradient(45deg, #fdc305, rgb(52, 255, 2));
+  }
+  .num32768 {
+    background: linear-gradient(45deg, #a6fd05, rgb(72, 209, 233));
+  }
+  .num65536 {
+    background: linear-gradient(45deg, #05c3fd, rgb(182, 47, 245));
+  }
+  .num0 {
+    background: #c5b4b4;
+  }
+  .menu-modal,
+  .win-modal,
+  .failed-modal {
+    background-color: #45506e;
+  }
+  button {
+    background-color: #ebe85d;
+    color: #222fa3;
+  }
+  button:hover {
+    background-color: #222fa3;
+    color: rgb(250, 215, 150);
+  }
+}
+
+body.rainbow-mode {
+  background: linear-gradient(135deg, #f3ef10, rgb(10, 224, 240));
+  height: 100vh;
+  .top-score {
+    border: 2px solid rgb(247, 244, 244);
+    background: linear-gradient(90deg, rgb(10, 110, 240), #f3ab10);
+  }
+  .scoreNum {
+    h2 {
+      color: rgb(248, 64, 64);
+    }
+  }
+  section.board {
+    background: #575454;
+    border: 0.3rem solid rgb(170, 164, 159);
+    .sqr {
+      border: 0.3rem solid rgb(170, 164, 159);
+      p {
+        color: #222fa3;
+      }
+    }
+  }
+  .num2 {
+    background: linear-gradient(225deg, #faa3a3, rgb(253, 250, 54));
+  }
+  .num4 {
+    background: linear-gradient(225deg, #f87171, rgb(221, 219, 82));
+  }
+  .num8 {
+    background: linear-gradient(225deg, #f85353, rgb(192, 240, 22));
+  }
+  .num16 {
+    background: linear-gradient(225deg, #e08548, rgb(153, 238, 84));
+  }
+  .num32 {
+    background: linear-gradient(225deg, #f7873d, rgb(255, 251, 0));
+  }
+  .num64 {
+    background: linear-gradient(225deg, #f8af10, rgb(115, 255, 0));
+  }
+  .num128 {
+    background: linear-gradient(225deg, #f8e910, rgb(51, 255, 0));
+  }
+  .num256 {
+    background: linear-gradient(225deg, #bafa53, rgb(47, 230, 236));
+  }
+  .num512 {
+    background: linear-gradient(225deg, #72fc01, rgb(12, 179, 245));
+  }
+  .num1024 {
+    background: linear-gradient(225deg, #5bf07b, rgb(53, 99, 250));
+  }
+  .num2048 {
+    background: linear-gradient(225deg, #5bc1f0, rgb(216, 86, 248));
+  }
+  .num4096 {
+    background: linear-gradient(225deg, #2267fc, rgb(252, 49, 225));
+  }
+  .num8192 {
+    background: linear-gradient(225deg, #3f31fc, rgb(255, 12, 174));
+  }
+  .num16384 {
+    background: linear-gradient(225deg, #5d22ff, rgb(253, 0, 63));
+  }
+  .num32768 {
+    background: linear-gradient(225deg, #d322ff, rgb(0, 194, 253));
+  }
+  .num65536 {
+    background: linear-gradient(225deg, #ff0a91, rgb(250, 246, 23));
+  }
+  .num0 {
+    background: linear-gradient(225deg, #ff3c00, rgb(23, 167, 250));
+  }
+  .menu-modal,
+  .win-modal,
+  .failed-modal {
+    background: linear-gradient(225deg, #00e1ff, rgb(216, 250, 23));
+  }
+  button {
+    background-color: #ff8432;
+    color: #222fa3;
+  }
+  button:hover {
+    background-color: #f7d25a;
+    color: rgb(61, 147, 245);
+  }
+  #menu {
+    background: linear-gradient(90deg, rgb(229, 27, 247), rgb(255, 251, 24));
+  }
+
+  #restart {
+    background: linear-gradient(90deg, rgb(255, 251, 24), rgb(36, 239, 63));
+  }
 }
