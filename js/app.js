@@ -1,8 +1,6 @@
 /*-------------------------------- Constants --------------------------------*/
-const numSqr = [0, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048];
-
 /*---------------------------- Variables (state) ----------------------------*/
-let board, win, failed, sizeN, score, topScore, infinityMode, is2048, digiWorld;
+let board, win, failed, sizeN, score, topScore, infinityMode;
 
 /*------------------------ Cached Element References ------------------------*/
 const sqrEls = document.querySelectorAll(".sqr");
@@ -67,22 +65,10 @@ function init() {
   for (let i = 0; i < sizeN * sizeN; i++) {
     board[i] = 0;
   }
-  //test for fun
-  board = [
-    8, 4, 2, 2, 16, 32, 64, 128, 2048, 1024, 512, 256, 4096, 8192, 16384, 32768,
-  ];
-  //test
 
   score = 0;
-  let my2048 = {
-    topScore: topScore,
-    digiWorld: digiWorld,
-    is2048: is2048,
-  };
-  //   localStorage.clear();
   topScore = localStorage.getItem("top-score");
   if (topScore == null) {
-    // localStorage.setItem("top-score", JSON.stringify([my2048]));
     topScore = 0;
     localStorage.setItem("top-score", topScore);
   }
@@ -128,7 +114,7 @@ function randomGenerate() {
   board[whereGenerate] = probability < 9 ? 2 : 4;
 }
 
-// -------------------Handle the direction key is pressed-------------------
+// -------------------Handle the direction key pressed-------------------
 function handleKeyDown(e) {
   let dirOfBoard;
   let boardTemp = board.map((e) => e);
@@ -173,33 +159,23 @@ function handleKeyDown(e) {
 
   isFailed(board);
   if (failed) {
-    console.log("-------------Failed! Try again-------------");
     return;
   }
 
-  // --if all the squares are at the edge of direction of key pressed, the function end----
+  // --if all the squares are at the edge of direction of key pressed, the function end and won't generate a number ----
   if (arrayEquals(board, boardTemp)) {
     return;
   }
 
   scorePoint.innerHTML = `${score} : Now`;
-  if (topScore > score) {
-    topScore = topScore;
-  } else {
-    topScore = score;
-  }
+  score >= topScore ? (topScore = score) : "";
+
   topPoint.innerHTML = `Top: ${topScore}`;
   localStorage.setItem("top-score", topScore);
   curScoreBar.style.width = `${((score / topScore) * 100).toFixed(0)}%`;
   randomGenerate();
   updateBoard();
 }
-
-// detecting-the-pressed-arrow-key
-// https://www.geeksforgeeks.org/javascript-detecting-the-pressed-arrow-key/
-
-// direction of board array
-// https://code.likeagirl.io/create-an-array-of-empty-arrays-7ec77edea546
 
 // --------reshape the board array to 2D array of key pressed direction---------
 //--------------------------left key-----------------------------
@@ -350,8 +326,6 @@ function isFailed(a) {
   failedModal.classList.add("show");
 }
 
-// check two array is equal
-// https://flexiple.com/javascript/javascript-array-equality/
 function arrayEquals(a, b) {
   return (
     Array.isArray(a) &&
@@ -372,3 +346,13 @@ function rainbow() {
     ? body.removeAttribute("class")
     : body.setAttribute("class", "rainbow-mode");
 }
+
+// ----------------------credit--------------------------
+// detecting-the-pressed-arrow-key
+// https://www.geeksforgeeks.org/javascript-detecting-the-pressed-arrow-key/
+
+// cerate 2D empty array
+// https://code.likeagirl.io/create-an-array-of-empty-arrays-7ec77edea546
+
+// check two array is equal
+// https://flexiple.com/javascript/javascript-array-equality/
