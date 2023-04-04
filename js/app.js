@@ -64,12 +64,11 @@ function init() {
   for (let i = 0; i < sizeN * sizeN; i++) {
     board[i] = 0;
   }
-  // test win
-  // (board[12] = 1024),
-  //   (board[13] = 1024),
-  //   (board[14] = 1024),
-  //   (board[15] = 1024);
-  // test win
+  //test for fun
+  // board = [
+  //   8, 4, 2, 2, 16, 32, 64, 128, 2048, 1024, 512, 256, 4096, 8192, 16384, 32768,
+  // ];
+  //test
 
   score = 0;
   let my2048 = {
@@ -101,12 +100,15 @@ function updateBoard() {
   allSqr.forEach((e) => e.remove());
   sqrEls.forEach((e, idx) => {
     let sqrContent = document.createElement("p");
+    let sqrDiv = document.querySelector(`#sq${idx}`);
     board[idx] == 0
       ? ((sqrContent.innerHTML = " "),
-        sqrContent.classList.add("num0"),
+        sqrDiv.setAttribute("class", "sqr"),
+        sqrDiv.classList.add("num0"),
         e.append(sqrContent))
       : ((sqrContent.innerHTML = board[idx]),
-        sqrContent.classList.add(`num${board[idx]}`),
+        sqrDiv.setAttribute("class", "sqr"),
+        sqrDiv.classList.add(`num${board[idx]}`),
         e.append(sqrContent));
   });
 }

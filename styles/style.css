@@ -15,7 +15,7 @@ html {
 }
 
 body {
-  background: whitesmoke;
+  background: rgb(12, 9, 0);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -43,23 +43,115 @@ body {
   display: flex;
   justify-content: space-between;
 }
+.scoreNum h2 {
+  color: rgb(161, 161, 161);
+}
 
 section.board {
+  background: #acabab;
   display: grid;
-  width: 62vh;
-  grid-template-rows: repeat(4, 15vh);
-  grid-template-columns: repeat(4, 15vh);
+  width: 24.5rem;
+  grid-template-rows: repeat(4, 6rem);
+  grid-template-columns: repeat(4, 6rem);
   grid-gap: 0vmin;
   margin: 0.5rem;
+  border: 0.3rem solid rgb(211, 241, 250);
 }
 
 .sqr {
-  border: 1vmin solid rgb(14, 96, 121);
+  border: 0.3rem solid rgb(211, 241, 250);
   font-size: 8vmin;
   text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.sqr p {
+  color: white;
+}
+
+.num2 {
+  background: #c0b2b2;
+  font-size: 3rem;
+}
+
+.num4 {
+  background: #b38a8a;
+  font-size: 3rem;
+}
+
+.num8 {
+  background: #936868;
+  font-size: 3rem;
+}
+
+.num16 {
+  background: #813f3f;
+  font-size: 3rem;
+}
+
+.num32 {
+  background: #521a1a;
+  font-size: 3rem;
+}
+
+.num64 {
+  background: #941e1e;
+  font-size: 3rem;
+}
+
+.num128 {
+  background: #d34141;
+  font-size: 2.75rem;
+}
+
+.num256 {
+  background: #f9532f;
+  font-size: 2.75rem;
+}
+
+.num512 {
+  background: #f26b09;
+  font-size: 2.75rem;
+}
+
+.num1024 {
+  background: #f85d03;
+  font-size: 2.3rem;
+}
+
+.num2048 {
+  background: #be4400;
+  font-size: 2.3rem;
+}
+
+.num4096 {
+  background: linear-gradient(45deg, #fd0505, rgb(245, 225, 47));
+  font-size: 2.3rem;
+}
+
+.num8192 {
+  background: linear-gradient(45deg, #fd7d05, rgb(159, 245, 47));
+  font-size: 2.3rem;
+}
+
+.num16384 {
+  background: linear-gradient(45deg, #fdc305, rgb(52, 255, 2));
+  font-size: 1.9rem;
+}
+
+.num32768 {
+  background: linear-gradient(45deg, #a6fd05, rgb(72, 209, 233));
+  font-size: 1.8rem;
+}
+
+.num65536 {
+  background: linear-gradient(45deg, #05c3fd, rgb(182, 47, 245));
+  font-size: 1.8rem;
+}
+
+.num0 {
+  background: #acabab;
 }
 
 .menu-modal-container,
