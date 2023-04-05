@@ -76,9 +76,7 @@ function init() {
   for (let i = 0; i < sizeN * sizeN; i++) {
     board[i] = 0;
   }
-  board = [
-    8, 4, 2, 2, 16, 32, 64, 128, 2048, 1024, 512, 256, 4096, 8192, 16384, 32768,
-  ];
+
   score = 0;
   topScore = localStorage.getItem("top-score");
   if (topScore == null) {
@@ -193,6 +191,7 @@ function handleKeyDown(e) {
 // --------reshape the board array to 2D array of key pressed direction---------
 //--------------------------left key-----------------------------
 function moveLeft() {
+  // arr1 is 2d array of array
   let arr1 = [];
   let arr2 = [];
   for (let i = 0; i < 16; i += 4) {
