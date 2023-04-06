@@ -210,8 +210,16 @@ section.board {
   border: none;
   border-radius: 20px;
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
   align-items: center;
+}
+.win-modal,
+.failed-modal {
+  h4 {
+    text-align: center;
+    margin: 25px;
+  }
 }
 
 button {
@@ -349,6 +357,9 @@ body.light-mode {
 
   #restart {
     background: linear-gradient(270deg, rgb(33, 121, 203), rgb(239, 85, 36));
+    color: white;
+  }
+  h4 {
     color: white;
   }
   .rule {
