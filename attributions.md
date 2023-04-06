@@ -7,3 +7,7 @@
 - [Check if two array is equal](https://flexiple.com/javascript/javascript-array-equality/)
 
 I would like to say thank you to all of the authors of these articles that provide me with solutions.
+
+## Additionally
+
+- Google Fonts [Noto Sans](https://fonts.google.com/noto/specimen/Noto+Sans)
