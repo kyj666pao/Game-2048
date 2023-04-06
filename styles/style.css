@@ -22,8 +22,14 @@ body {
   align-items: center;
 }
 
+.title {
+  color: white;
+  font-size: 3rem;
+  text-align: center;
+}
+
 .scoreBar {
-  margin: 20px;
+  margin: 10px;
 }
 
 .top-score {
@@ -268,6 +274,9 @@ button:hover {
 body.light-mode {
   background: whitesmoke;
 }
+body.light-mode .title {
+  color: rgb(44, 39, 39);
+}
 body.light-mode .top-score {
   border: 2px solid red;
   background: rgb(253, 253, 253);
@@ -379,6 +388,9 @@ body.rainbow-mode {
   justify-content: flex-start;
   background: linear-gradient(135deg, #f3ef10, rgb(10, 224, 240));
   height: 100vh;
+}
+body.rainbow-mode .title {
+  color: rgb(44, 39, 39);
 }
 body.rainbow-mode .top-score {
   border: 2px solid rgb(247, 244, 244);
