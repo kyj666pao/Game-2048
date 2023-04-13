@@ -51,7 +51,7 @@ closeMenuBtn.forEach((e) => {
     menuModal.classList.remove("show");
   });
 });
-lightBtn.addEventListener("click", LightDark);
+lightBtn.addEventListener("click", lightDark);
 rainbowBtn.addEventListener("click", rainbow);
 
 winModalBtn.forEach((e) => {
@@ -347,7 +347,7 @@ function arrayEquals(a, b) {
   );
 }
 
-function LightDark() {
+function lightDark() {
   body.className == "light-mode"
     ? body.removeAttribute("class")
     : body.setAttribute("class", "light-mode");
